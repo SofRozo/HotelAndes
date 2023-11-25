@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://sofrozo:sofrozo123@mongodb101.s02w8jn.mongodb.net/
+      database: HOTELANDES
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html

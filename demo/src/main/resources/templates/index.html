@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parranderos MongoDB</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Merriweather Sans', sans-serif;
+        }
+
+        nav {
+            background-color: #333;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100; /* Asegura que el navbar esté por encima del contenido */
+            width:auto;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        @media screen and (max-width: 800px) {
+            nav a {
+                float: none;
+                display: block;
+                text-align: left;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+        .contenido {
+            padding: 16px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin-top: 30px;
+            height: 160px;
+            box-shadow: 5px -5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-image {
+            display: block;
+            margin: 0 auto; /* Centra la imagen horizontalmente */
+            max-width: 100px;
+            height: auto;
+            float: left; /* Alinea la imagen a la izquierda */
+            margin-right: 20px; /* Agrega un margen a la derecha de la imagen para separar del texto */
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8));
+            
+        }
+
+        .footer-image:hover {
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.8)) brightness(1.2); /* Brillo al hacer hover */
+        }
+        
+    </style>
+</head>
+<body>
+        <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="row" style="margin-top: 40px;">
+        <label class="col-md-6 control-label">
+            <img src="https://github.com/JuanCoronel70/el-salvador-violencia/blob/main/DALL%C2%B7E%202023-11-14%2019.31.10%20-%203d%20render%20of%20a%20drink%20with%20a%20green%20leaf,%204k.png?raw=true&cache=1" alt="" style="height: 600px;width: 600px; margin-left: 10px;" loading="lazy">
+        </label>
+
+        <label class="col-md-6 control-label">
+            <h1 style="font-size: 120px; text-align:start;"> Parranderos + MongoDB </h1>
+            <h1 style="font-size: 20px; text-align: start; letter-spacing: 5px; word-spacing: 22px;">Una aplicación demo que usa Spring Boot Data con MongoDB como ejemplo practico para el modulo NoSQL del curso Sistemas Transaccionales.</h1>
+        </label>
+        
+    </div>
+
+    <footer>
+        <img src="https://github.com/JuanCoronel70/el-salvador-violencia/blob/main/79f258dcebe9f4539ec8a18928973e86-removebg-preview.png?raw=true&cache=1" alt="Logo" class="footer-image" loading="lazy">
+        <p style="text-align: right; margin-top: 100px;">@Universidad de los Andes - DISC - Sistemas Transaccionales (2023-02)</p>
+    </footer>
+
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>
