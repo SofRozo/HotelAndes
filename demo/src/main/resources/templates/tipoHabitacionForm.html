@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Tipo Habitacion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Nuevo Tipo Habitacion</h1>
+
+        <!-- Formulario de creación -->
+        <form th:action="@{/crearTipoHabitacionNueva}" th:object="${tipoHabitacionNueva}" method="post">
+
+            <!-- Campos para la información del tipo de habitacion -->
+            <label for="tipoHabitacionNombre">Nombre del tipo habitacion:</label>
+            <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
+        
+            <label for="descripcion">Descripcion: </label>
+            <input type="text" id="descripcion" name="descripcion" th:field="*{descripcion}" required />
+
+            <label for="dotacion">Dotación (separada por comas):</label>
+            <input type="text" id="dotacion" name="dotacion" th:field="*{dotacion}" placeholder="Ejemplo: Cama, Mesa, Silla" />
+
+            <label for="costo">Costo:</label>
+            <input type="number" id="costo" name="costo" th:field="*{costo}" required />
+
+            <label for="capacidad">Capacidad:</label>
+            <input type="number" id="capacidad" name="capacidad" th:field="*{capacidad}" required />
+        
+            <button type="submit" class="btn btn-success">Crear TipoHabitacion</button>
+        </form>
+    </div>
+
+</body>
+</html>
