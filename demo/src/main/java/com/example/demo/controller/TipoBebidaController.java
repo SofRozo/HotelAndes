@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.modelo.Bebida;
-import com.example.demo.modelo.BebidaEmbedded;
 import com.example.demo.modelo.TipoBebida;
 import com.example.demo.repositorio.BebidaRepository;
 import com.example.demo.repositorio.TipoBebidaRepository;

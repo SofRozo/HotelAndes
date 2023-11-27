@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.modelo.TiposHabitacion;
 import com.example.demo.repositorio.TiposHabitacionRepository;
-import java.util.Arrays;
 
 @Controller
 public class TiposHabitacionController {
