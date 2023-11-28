@@ -55,26 +55,29 @@
     <div class="container mt-3">
         <h1>Nuevo Servicio</h1>
 
-        <!-- Formulario de creación -->
         <form th:action="@{/crearServicio}" th:object="${nuevoServicio}" method="post">
 
-            <!-- Campos para la información del tipo de habitacion -->
-            <label for="tipoHabitacionNombre">Nombre del tipo habitacion:</label>
+            <!-- Campos para la información del servicio -->
+            <label for="nombre">Nombre del servicio:</label>
             <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
-        
-            <label for="descripcion">Descripcion: </label>
+
+            <label for="descripcion">Descripción:</label>
             <input type="text" id="descripcion" name="descripcion" th:field="*{descripcion}" required />
 
-            <label for="dotacion">Dotación (separada por comas):</label>
-            <input type="text" id="dotacion" name="dotacion" th:field="*{dotacion}" placeholder="Ejemplo: Cama, Mesa, Silla" />
+            <label for="tipo_servicio">Tipo de servicio:</label>
+            <input type="text" id="tipo_servicio" name="tipo_servicio" th:field="*{tipo_servicio}" required />
 
-            <label for="costo">Costo:</label>
-            <input type="number" id="costo" name="costo" th:field="*{costo}" required />
+            <!-- Campos para la creacion del prod menu-->
+            <label for="nombreProducto">Nombre del producto:</label>
+            <input type="text" id="nombreProducto" name="productos_menu[0].nombre" th:field="*{productos_menu[0].nombre}" required />
 
-            <label for="capacidad">Capacidad:</label>
-            <input type="number" id="capacidad" name="capacidad" th:field="*{capacidad}" required />
-        
-            <button type="submit" class="btn btn-success">Crear TipoHabitacion</button>
+            <label for="descripcionProducto">Descripción:</label>
+            <input type="text" id="descripcionProducto" name="productos_menu[0].descripcion" th:field="*{productos_menu[0].descripcion}" required />
+
+            <label for="precioProducto">Precio:</label>
+            <input type="number" id="precioProducto" name="productos_menu[0].precio" th:field="*{productos_menu[0].precio}" required />
+
+            <button type="submit" class="btn btn-success">Crear Servicio</button>
         </form>
     </div>
 

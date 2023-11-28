@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Producto Menu</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+<div class="container mt-3">
+    <div class="d-flex justify-content-start">
+        <h1 style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);">Añadir Producto Menu al Tipo de Servicio</h1>
+        <h1 th:text=" ${nombre}" style="margin-left: 10px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);"></h1>
+    </div>
+
+    <!-- Formulario de creación -->
+    <form th:action="@{/addProductoMenuSave}" th:object="${nuevoProducto}" method="post" style="margin-top: 35px;">
+
+    <!-- Campo oculto para la variable nombreServicio -->
+    <input type="hidden" id="nombreServicio" name="nombreServicio" th:value="${nombreServicio}" />
+    
+    <label for="nombre">Nombre del producto menu de servicio:</label>
+    <input type="text" id="nombre" name="nombre" th:field="*{nombre}" required />
+
+    <label for="descripcion">Descripción:</label>
+    <input type="text" id="descripcion" name="descripcion" th:field="*{descripcion}" required />
+
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" name="precio" th:field="*{precio}" required />
+
+    <button type="submit" class="btn btn-success">Añadir Producto Menu</button>
+</form>
+
+
+</div>
+
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -62,5 +62,20 @@ public class TiposHabitacionController {
         return "tiposHabitacion";
     }
 
+    @PostMapping("/actualizarTipoHabitacion")
+    public String actualizarTipoHabitacion(@ModelAttribute("tipoHabitacion") TiposHabitacion tipoHabitacion) {
+        tipoHabitacionRepository.save(tipoHabitacion);
+        return "redirect:/tiposHabitacion";
+    }
+
+    @GetMapping("/editarTipoHabitacion")
+    public String editarTipoHabitacion(@RequestParam("id") String id, Model model) {
+        TiposHabitacion tipoHabitacion = tipoHabitacionRepository.findById(id).orElse(null);
+        model.addAttribute("tipoHabitacion", tipoHabitacion);
+        return "editarTipoHabitacionForm";
+    }
+
+
+
     
 }

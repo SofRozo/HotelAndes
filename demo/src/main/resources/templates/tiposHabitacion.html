@@ -57,6 +57,10 @@
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>
+                    <td>
+                        <!-- Botón para redirigir a la página de edición del tipo de habitación -->
+                        <a th:href="@{'/editarTipoHabitacion?id=' + ${tipoHabitacion.id}}" class="btn btn-primary">Editar</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
