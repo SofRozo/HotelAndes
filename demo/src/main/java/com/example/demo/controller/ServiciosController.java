@@ -54,10 +54,11 @@ public class ServiciosController {
 
         @GetMapping("/addProductosMenu")
         public String addProductosMenu(@RequestParam(name = "nombre", required = false) String nombre, Model model) {
-            model.addAttribute("nombreServicio", model);
+            model.addAttribute("nombreServicio", nombre); // Agregar el valor de nombreServicio al modelo
             model.addAttribute("nuevoProducto", new ProductosMenuEmbedded());
             return "addProductosMenuForm";
         }
+        
 
         
         @PostMapping("/deleteServicio")
@@ -73,8 +74,8 @@ public class ServiciosController {
         }
 
         @PostMapping("/addProductoMenuSave")
-        public String añadirProductoMenuSave(@RequestParam("nombre") String nombre,
-            @ModelAttribute("productos_menu") ProductosMenuEmbedded beb){
+        public String añadirProductoMenuSave(@RequestParam("nombreServicio") String nombreServicio,
+            @ModelAttribute("nuevoProducto") ProductosMenuEmbedded beb){
 
                 // Creamos una nueva bebida utilizando los datos del formulario
                 ProductosMenuEmbedded nuevoPM = new ProductosMenuEmbedded(
@@ -83,9 +84,9 @@ public class ServiciosController {
                     beb.getPrecio()
                 );
 
-                System.out.println(nombre);
+                System.out.println(nombreServicio);
                 //Buscamos los tipos de bebida con ese nombre
-                List<Servicios> servs = serviciosRepository.findByNombre(nombre);
+                List<Servicios> servs = serviciosRepository.findByNombre(nombreServicio);
 
                 //Añadimos esa bebida a todos los tipos de bebidas con ese nombre
                 for (Servicios servicios:servs){
