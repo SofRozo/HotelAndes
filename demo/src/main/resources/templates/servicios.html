@@ -10,40 +10,44 @@
     <!-- Incluye el navbar -->
     <div th:replace="navbar :: navbar"></div>
 
-<div class="container mt-3">
-    <h1>Servicios</h1>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre Servicio</th>
-                <th>Productos Menu [Nombre, descripcion, precio]</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="servicio : ${servicios}">
-                <td th:text="${servicio.nombre}"></td>
-                <td>
-                    <ul th:if="${servicio.productos_menu != null}">
-                        <li th:each="productos_menu : ${servicio.productos_menu}">
-                            <span th:text="${productos_menu.nombre + ', ' + productos_menu.descripcion + ', ' + productos_menu.precio }"></span>
-                        </li>
-                    </ul>
-                    <a th:href="@{'/addProductosMenu?nombre=' + ${servicio.nombre}}" class="btn btn-primary">Añadir producto menu</a>
+    <div class="container mt-3">
+        <h1>Servicios</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre Servicio</th>
+                    <th>Productos Menu [Nombre, descripción, precio]</th>
+                    <th>Acciones</th> <!-- Nueva columna para acciones -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="servicio : ${servicios}">
+                    <td th:text="${servicio.nombre}"></td>
+                    <td>
+                        <ul th:if="${servicio.productos_menu != null}">
+                            <li th:each="productos_menu : ${servicio.productos_menu}">
+                                <span th:text="${productos_menu.nombre + ', ' + productos_menu.descripcion + ', ' + productos_menu.precio }"></span>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        <div class="d-flex flex-column align-items-start">
+                            <a th:href="@{'/addProductosMenu?nombre=' + ${servicio.nombre}}" class="btn btn-primary mb-2">Añadir producto menu</a>
+                            
+                            <form th:action="@{/deleteServicio}" method="post">
+                                <input type="hidden" name="nombre" th:value="${servicio.nombre}" />
+                                <button type="submit" class="btn btn-danger">Eliminar Servicio</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-                    <form th:action="@{/deleteServicio}" method="post">
-                        <input type="hidden" name="nombre" th:value="${servicio.nombre}" />
-                        <button type="submit" class="btn btn-primary" style="background-color: red; border-color: red; margin-top: 10px;">Eliminar Servicio</button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        <a th:href="@{/serviciosForm}" class="btn btn-primary" style="margin-bottom: 20px;">Crear Servicio</a>
+    </div>
 
-     <a th:href="@{/serviciosForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Servicio</a>
-
-</div>
-
-<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
 </body>
 </html>
