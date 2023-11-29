@@ -19,9 +19,8 @@ public class ConsumoController {
     @Autowired
     private ConsumoRepository consumoRepository;
 
-    @GetMapping("/crearConsumo")
     public String crearConsumo(Model model){
-        model.addAttribute("ConsumoNuevo", new Consumo());
+        model.addAttribute("consumoNuevo", new Consumo());
         return "consumoForm";
     }
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos Habitacion</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Tipos Habitacion</h1>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <!-- Formulario para buscar por nombre -->
+                <form th:action="@{/buscarPorNombre}" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 mb-3">
+                <!-- Botón para redirigir al formulario de creación de tipo de habitación -->
+                <a th:href="@{/crearTipoHabitacion}" class="btn btn-primary">Crear Nuevo Tipo de Habitación</a>
+            </div>
+        </div>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Habitacion Id</th>
+                    <th>Servicio Nombre</th>
+                    <th>Cliente Id</th>
+                    <th>Descripcion</th>
+                    <th>Costo</th>
+                    <th>Fecha</th> <!-- Nueva columna para acciones -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteramos sobre la lista de tipos de habitación y mostramos los detalles -->
+                <tr th:each="consumo: ${consumo}">
+                    <td th:text="${consumo.habitacion_id}"></td>
+                    <td th:text="${consumo.descripcion}"></td>
+                    <td>
+                        <!-- Iterar sobre la lista de dotación y mostrar cada elemento -->
+                        <span th:each="item : ${consumo.fecha}" th:text="${item} + ', '"></span>
+                    </td>
+                    <td th:text="${consumo.costo}"></td>
+                    <td th:text="${consumo.fecha}"></td>
+                    <td>
+                        <!-- Botón para redirigir al formulario de eliminación del tipo de habitación -->
+                        <form th:action="@{/deleteConsumo}" method="post">
+                            <input type="hidden" name="id" th:value="${consumo.id}" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <!-- Botón para redirigir a la página de edición del tipo de habitación -->
+                        <a th:href="@{'/editarConsumo?id=' + ${consumo.id}}" class="btn btn-primary">Editar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>
+

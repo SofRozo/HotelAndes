@@ -3,6 +3,7 @@ package com.example.demo.modelo;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -12,13 +13,13 @@ public class Consumo {
     @Id
     private String id;
 
-    @Field("habitacion_id")
+    @DBRef
     private String habitacion_id;
 
-    @Field("servicio_nombre")
+    @DBRef
     private Servicios servicio_nombre;
 
-    @Field("cliente_id")
+    @DBRef
     private String cliente_id;
 
     @Field("descripcion")
