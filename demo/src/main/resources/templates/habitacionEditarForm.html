@@ -57,7 +57,9 @@
 
         <!-- Formulario de edición de Habitacion -->
         <form th:action="@{/actualizarHabitacion}" th:object="${habitacion}" method="post">
+
             <input type="hidden" th:field="*{id}" />
+            
             <label for="numero">Numero de habitacion:</label>
             <input type="text" id="numero" name="numero" th:field="*{numero}" required />
 

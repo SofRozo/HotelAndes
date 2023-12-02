@@ -95,9 +95,15 @@ public class HabitacionesController {
 
     @PostMapping("/actualizarHabitacion")
     public String actualizarHabitacion(@ModelAttribute("habitacion") Habitaciones habitacion) {
+        // save the tipo_habitacion object
+        TiposHabitacion tipo_habitacion = habitacion.getTipo_habitacion().get(0);
+        if (tipo_habitacion != null) {
+            tipoHabitacionesRepo.save(tipo_habitacion);
+        }
         habitacionesRepository.save(habitacion);
         return "redirect:/habitaciones";
     }
+
 
     @GetMapping("/editarHabitacion")
     public String editarHabitacion(@RequestParam("id") String id, Model model) {
@@ -136,35 +142,5 @@ public class HabitacionesController {
         habitacionesRepository.save(nuevaHabitacion);
         return "redirect:/habitaciones";
     }
-
-    //Agregar una reserva a una habitacion
-    @PostMapping("/habitaciones/{habitacionId}/reservar")
-    public String reservarHabitacion(@PathVariable String habitacionId, @ModelAttribute("reserva") Reservas reserva) {
-        Habitaciones habitacion = habitacionesRepository.findById(habitacionId).orElse(null);
-        
-        if (habitacion != null) {
-            // Asignar la habitación a la reserva
-            reserva.setHabitaciones(Collections.singletonList(habitacion));
-
-            // Guardar la reserva
-            reservasRepo.save(reserva);
-
-            // Asignar la reserva a la habitación
-            List<Reservas> reservasHabitacion = habitacion.getReservas();
-            if (reservasHabitacion == null) {
-                reservasHabitacion = new ArrayList<>();
-            }
-            reservasHabitacion.add(reserva);
-            habitacion.setReservas(reservasHabitacion);
-            habitacionesRepository.save(habitacion);
-            
-            // Redireccionar a la página de habitaciones o a donde sea necesario
-            return "redirect:/habitaciones";
-        } else {
-            // Manejar el caso si la habitación no se encuentra
-            return "redirect:/habitaciones"; // O redirigir a una página de error
-        }
-    }
-
     
 }

@@ -25,9 +25,6 @@ public class Habitaciones {
     @Field("detalles")
     private String detalles;
 
-    @DBRef
-    private List<Reservas> reservas;
-
     // Constructor vacio para el uso de Spring
     public Habitaciones(){}
 
@@ -38,12 +35,11 @@ public class Habitaciones {
         this.detalles = detalles;
     }
 
-    public Habitaciones(String numero, List<TiposHabitacion> tipo_habitacion, String estado, String detalles, List<Reservas> reservas){
+    public Habitaciones(String numero, List<TiposHabitacion> tipo_habitacion, String estado, String detalles){
         this.numero = numero;
         this.tipo_habitacion = tipo_habitacion;
         this.estado = estado;
         this.detalles = detalles;
-        this.reservas = reservas;
     }
 
     public String getId() {
@@ -86,13 +82,6 @@ public class Habitaciones {
         this.detalles = detalles;
     }
 
-    public List<Reservas> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<Reservas> reservas) {
-        this.reservas = reservas;
-    }
 
     
 }
