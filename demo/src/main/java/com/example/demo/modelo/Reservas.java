@@ -23,14 +23,14 @@ public class Reservas {
     private String fecha_inicio;
 
     @Field("fecha_fin")
-    private Date fecha_fin;
+    private String fecha_fin;
 
     @Field("estado")
-    private Date estado;
+    private String estado;
 
     public Reservas(){}
 
-    public Reservas(List<Habitaciones> habitaciones, List<Clientes> clientes, String fecha_inicio, Date fecha_fin, Date estado){
+    public Reservas(List<Habitaciones> habitaciones, List<Clientes> clientes, String fecha_inicio, String fecha_fin, String estado){
         this.habitaciones = habitaciones;
         this.clientes = clientes;
         this.fecha_inicio = fecha_inicio;
@@ -70,19 +70,19 @@ public class Reservas {
         this.fecha_inicio = fecha_inicio;
     }
 
-    public Date getFecha_fin() {
+    public String getFecha_fin() {
         return fecha_fin;
     }
 
-    public void setFecha_fin(Date fecha_fin) {
+    public void setFecha_fin(String fecha_fin) {
         this.fecha_fin = fecha_fin;
     }
 
-    public Date getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(Date estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

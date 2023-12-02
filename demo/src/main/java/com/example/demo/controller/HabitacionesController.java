@@ -70,6 +70,20 @@ public class HabitacionesController {
         return "resultadosTiposHabitacion"; 
     }
 
+    @GetMapping("/mostrarResultadosAgregacionReservasHabitacion")
+    public String mostrarResultadosReservasHabitacion(Model model){
+        LookupOperation lookupOperation = LookupOperation.newLookup()
+                .from("reservas")
+                .localField("reservas")
+                .foreignField("_id")
+                .as("Lista_reservas_habitacion");
+        Aggregation aggregation = Aggregation.newAggregation(lookupOperation);
+        
+        List<Habitaciones> habitaciones = mongoTemplate.aggregate(aggregation, "habitaciones", Habitaciones.class).getMappedResults();
+        model.addAttribute("habitaciones", habitaciones);
+        return "resultadosReservasHabitacion"; 
+    }
+
     @GetMapping("/habitacionForm")
     public String mostrarFormulario(Model model){
         // Creamos una instancia vacía para la nueva habitacion

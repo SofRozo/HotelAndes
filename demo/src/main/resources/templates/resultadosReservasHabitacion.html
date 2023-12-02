@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones y Reservas</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+    <style>
+        /* Estilos para las celdas de la tabla */
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px; 
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Habitaciones y Reservas</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Número de Habitación</th>
+                    <th>Detalles de la Habitación</th>
+                    <th>Reservas</th>
+                    <th>Cliente (me falta implementar)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteramos sobre la lista de habitaciones y mostramos los detalles -->
+                <tr th:each="habitacion : ${habitaciones}">
+                    <td th:text="${habitacion.numero}"></td>
+                    <td>
+                        <p>Detalles: <span th:text="${habitacion.detalles}"></span></p>
+                    </td>
+                    <td>
+                        <!-- Iteramos sobre la lista de reservas de cada habitación -->
+                        <ul>
+                            <li th:each="reserva : ${habitacion.reservas}">
+                                <p th:text="${'Fecha inicio: ' + reserva.fecha_inicio}"></p>
+                                <p th:text="${'Fecha final: ' + reserva.fecha_fin}"></p>
+                                <p th:text="${'Estado: ' + reserva.estado}"></p>
+                                
+                                <!-- Agrega otros detalles de reserva si es necesario -->
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <!-- Botón para redirigir al formulario de creación de habitación -->
+        <a th:href="@{/habitacionForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva Habitación</a>
+    
+    </div>
+
+    <hr>
+    
+    <!-- Resto del código... -->
+
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>
