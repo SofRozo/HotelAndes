@@ -70,19 +70,19 @@
 
 
     <label for="tipo_habitacionNombre">Nombre del tipo de habitacion:</label>
-    <input type="text" id="nombre" name="tipo_habitacion.nombre" th:field="*{tipo_habitacion.nombre}" required />
+    <input type="text" id="nombre" name="tipo_habitacion[0].nombre" th:field="*{tipo_habitacion[0].nombre}" required />
 
     <label for="tipo_habitacionDescripcion">Descripcion del tipo de habitacion:</label>
-    <input type="text" id="descripcion" name="tipo_habitacion.descripcion" th:field="*{tipo_habitacion.descripcion}" required />
+    <input type="text" id="descripcion" name="tipo_habitacion[0].descripcion" th:field="*{tipo_habitacion[0].descripcion}" required />
 
     <label for="tipo_habitacionDotacion">Dotacion del tipo de habitacion:</label>
-    <input type="text" id="dotacion" name="tipo_habitacion.dotacion" th:field="*{tipo_habitacion.dotacion}" placeholder="Ejemplo: Cama, Mesa, Silla"  />
+    <input type="text" id="dotacion" name="tipo_habitacion[0].dotacion" th:field="*{tipo_habitacion[0].dotacion}" placeholder="Ejemplo: Cama, Mesa, Silla"  />
 
     <label for="tipo_habitacionCapacidad">Capacidad del tipo de habitacion:</label>
-    <input type="number" id="capacidad" name="tipo_habitacion.capacidad" th:field="*{tipo_habitacion.capacidad}" required />
+    <input type="number" id="capacidad" name="tipo_habitacion[0].capacidad" th:field="*{tipo_habitacion[0].capacidad}" required />
 
     <label for="tipo_habitacionCosto">Costo del tipo de habitacion:</label>
-    <input type="number" id="costo" name="tipo_habitacion.costo" th:field="*{tipo_habitacion.costo}" required />
+    <input type="number" id="costo" name="tipo_habitacion[0].costo" th:field="*{tipo_habitacion[0].costo}" required />
 
 
     <!-- Botón de envío -->

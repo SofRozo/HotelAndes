@@ -78,22 +78,22 @@ public class HabitacionesController {
         return "habitacionesForm";
     }
 
-    @GetMapping("/crearHabitacion")
+    @PostMapping("/crearHabitacion")
     public String crearHabitacion(@ModelAttribute("nuevaHabitacion") Habitaciones nuevaHabitacion){
         // Crear un nuevo tipo de habitacion utilizando los datos del formulario
         TiposHabitacion nuevoTipoHabitacion = new TiposHabitacion(
-            nuevaHabitacion.getTipo_habitacion().getNombre(),
-            nuevaHabitacion.getTipo_habitacion().getDescripcion(),
-            nuevaHabitacion.getTipo_habitacion().getDotacion(),
-            nuevaHabitacion.getTipo_habitacion().getCapacidad(),
-            nuevaHabitacion.getTipo_habitacion().getCosto()
+            nuevaHabitacion.getTipo_habitacion().get(0).getNombre(),
+            nuevaHabitacion.getTipo_habitacion().get(0).getDescripcion(),
+            nuevaHabitacion.getTipo_habitacion().get(0).getDotacion(),
+            nuevaHabitacion.getTipo_habitacion().get(0).getCapacidad(),
+            nuevaHabitacion.getTipo_habitacion().get(0).getCosto()
         );
 
         // Guardar el nuevo tipo de habitacion en la base de datos
         tipoHabitacionesRepo.save(nuevoTipoHabitacion);
 
         // Establecer el tipo de habitacion en la nueva habitacion
-        nuevaHabitacion.setTipo_habitacion(nuevoTipoHabitacion);
+        nuevaHabitacion.setTipo_habitacion(Collections.singletonList(nuevoTipoHabitacion));
 
         // Guardar la nueva habitacion
         habitacionesRepository.save(nuevaHabitacion);

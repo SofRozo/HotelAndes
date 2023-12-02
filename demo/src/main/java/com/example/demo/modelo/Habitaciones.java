@@ -17,7 +17,7 @@ public class Habitaciones {
     private String numero;
 
     @DBRef
-    private TiposHabitacion tipo_habitacion;
+    private List<TiposHabitacion> tipo_habitacion;
 
     @Field("estado")
     private String estado;
@@ -31,12 +31,14 @@ public class Habitaciones {
     // Constructor vacio para el uso de Spring
     public Habitaciones(){}
 
-    // Constructor con solo el numero de la habitacion
-    public Habitaciones(String numero){
+    // Constructor con solo eltipo de habitacion
+    public Habitaciones(String numero, String estado, String detalles){
         this.numero = numero;
+        this.estado = estado;
+        this.detalles = detalles;
     }
 
-    public Habitaciones(String numero, TiposHabitacion tipo_habitacion, String estado, String detalles, List<Reservas> reservas){
+    public Habitaciones(String numero, List<TiposHabitacion> tipo_habitacion, String estado, String detalles, List<Reservas> reservas){
         this.numero = numero;
         this.tipo_habitacion = tipo_habitacion;
         this.estado = estado;
@@ -60,11 +62,11 @@ public class Habitaciones {
         this.numero = numero;
     }
 
-    public TiposHabitacion getTipo_habitacion() {
+    public List<TiposHabitacion> getTipo_habitacion() {
         return tipo_habitacion;
     }
 
-    public void setTipo_habitacion(TiposHabitacion tipo_habitacion) {
+    public void setTipo_habitacion(List<TiposHabitacion> tipo_habitacion) {
         this.tipo_habitacion = tipo_habitacion;
     }
 
