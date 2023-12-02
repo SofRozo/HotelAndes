@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+    <style>
+        /* Estilos para las celdas de la tabla */
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px; 
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Habitaciones</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Informacion Habitacion</th>
+                    <th>Tipo Habitacion [Object Id]</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteramos sobre la lista de habitaciones y mostramos los detalles -->
+                <tr th:each="habs : ${habitaciones}">
+                    <td>
+                        <p>Numero: <span th:text="${habs.numero}"></span></p>
+                        <p>Detalles: <span th:text="${habs.detalles}"></span></p>
+                    </td>
+                    
+                    <td>
+                        <!-- Iteramos sobre la lista de tipo habitacion dentro de cada tipo -->
+                        <span th:each="idTipoHabitacion : ${habs.tipo_habitacion}">
+                            <!-- Mostramos los detalles de cada bebida -->
+                            <span th:text="${idTipoHabitacion.id}"></span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+         <!-- Botón para redirigir al formulario de creación de tipo bebida -->
+         <a th:href="@{/habitacionForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva Habitacion</a>
+    
+    </div>
+
+    <hr>
+    
+
+    <div class="container mt-3">
+        <h1>Pipeline de agregacion</h1>
+        <!-- Botón para redirigir a la consulta de agregacion -->
+        <a th:href="@{/mostrarResultadosAgregacion}" class="btn btn-primary" style="margin-bottom: 38px;">Ver habitacion y sus reservas</a>
+    
+    </div>
+
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>

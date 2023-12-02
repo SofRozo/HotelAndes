@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Habitacion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+<div class="container mt-3">
+    <h1>Nueva Habitacion</h1>
+
+    <!-- Formulario de creación de TipoBebida -->
+<form th:action="@{/crearHabitacion}" th:object="${nuevaHabitacion}" method="post">
+
+
+    <label for="numero">Numero de habitacion:</label>
+    <input type="text" id="numero" name="numero" th:field="*{numero}" required />
+
+    <label for="estado">Estado de habitacion:</label>
+    <input type="text" id="estado" name="estado" th:field="*{estado}" required />
+
+    <label for="detalles">Detalles de habitacion:</label>
+    <input type="text" id="detalles" name="detalles" th:field="*{detalles}" required />
+
+
+    <label for="tipo_habitacionNombre">Nombre del tipo de habitacion:</label>
+    <input type="text" id="nombre" name="tipo_habitacion.nombre" th:field="*{tipo_habitacion.nombre}" required />
+
+    <label for="tipo_habitacionDescripcion">Descripcion del tipo de habitacion:</label>
+    <input type="text" id="descripcion" name="tipo_habitacion.descripcion" th:field="*{tipo_habitacion.descripcion}" required />
+
+    <label for="tipo_habitacionDotacion">Dotacion del tipo de habitacion:</label>
+    <input type="text" id="dotacion" name="tipo_habitacion.dotacion" th:field="*{tipo_habitacion.dotacion}" placeholder="Ejemplo: Cama, Mesa, Silla"  />
+
+    <label for="tipo_habitacionCapacidad">Capacidad del tipo de habitacion:</label>
+    <input type="number" id="capacidad" name="tipo_habitacion.capacidad" th:field="*{tipo_habitacion.capacidad}" required />
+
+    <label for="tipo_habitacionCosto">Costo del tipo de habitacion:</label>
+    <input type="number" id="costo" name="tipo_habitacion.costo" th:field="*{tipo_habitacion.costo}" required />
+
+
+    <!-- Botón de envío -->
+    <button type="submit" class="btn btn-success">Crear Habitacion</button>
+</form>
+
+</div>
+
+</body>
+</html>

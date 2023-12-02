@@ -17,7 +17,7 @@ public class Habitaciones {
     private String numero;
 
     @DBRef
-    private List<TiposHabitacion> tipo_habitacion;
+    private TiposHabitacion tipo_habitacion;
 
     @Field("estado")
     private String estado;
@@ -36,7 +36,7 @@ public class Habitaciones {
         this.numero = numero;
     }
 
-    public Habitaciones(String numero, List<TiposHabitacion> tipo_habitacion, String estado, String detalles, List<Reservas> reservas){
+    public Habitaciones(String numero, TiposHabitacion tipo_habitacion, String estado, String detalles, List<Reservas> reservas){
         this.numero = numero;
         this.tipo_habitacion = tipo_habitacion;
         this.estado = estado;
@@ -60,11 +60,11 @@ public class Habitaciones {
         this.numero = numero;
     }
 
-    public List<TiposHabitacion> getTipo_habitacion() {
+    public TiposHabitacion getTipo_habitacion() {
         return tipo_habitacion;
     }
 
-    public void setTipo_habitacion(List<TiposHabitacion> tipo_habitacion) {
+    public void setTipo_habitacion(TiposHabitacion tipo_habitacion) {
         this.tipo_habitacion = tipo_habitacion;
     }
 
@@ -91,14 +91,6 @@ public class Habitaciones {
     public void setReservas(List<Reservas> reservas) {
         this.reservas = reservas;
     }
-
-    
-
-
-
-                  
-
-
 
     
 }

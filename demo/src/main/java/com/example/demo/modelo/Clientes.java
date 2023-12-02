@@ -25,10 +25,6 @@ public class Clientes {
     @Field("telefono")
     private String telefono;
 
-    @Field("direccion")
-    private String direccion;
-
-
     @Field("documento")
     private String documento;
 
@@ -46,9 +42,14 @@ public class Clientes {
         this.nombre = nombre;
     }
 
-    // Constructor con el nombre del cliente y una lista de reservas
-    public Clientes(String nombre, List<Reservas> reservas){
+
+    public Clientes(String nombre, String apellido, String email, String telefono, String documento, String tipo_documento, List<Reservas> reservas){
         this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+        this.documento = documento;
+        this.tipo_documento = tipo_documento;
         this.reservas = reservas;
     }
 
@@ -63,6 +64,62 @@ public class Clientes {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
+    }
+
+    public String getTipo_documento() {
+        return tipo_documento;
+    }
+
+    public void setTipo_documento(String tipo_documento) {
+        this.tipo_documento = tipo_documento;
+    }
+
+    public List<Reservas> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(List<Reservas> reservas) {
+        this.reservas = reservas;
     }
 
                                                                                                                                                                                                                                                                             
