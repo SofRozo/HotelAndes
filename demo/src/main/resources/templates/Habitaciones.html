@@ -33,6 +33,7 @@
                 <tr>
                     <th>Informacion Habitacion</th>
                     <th>Tipo Habitacion [Object Id]</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +51,18 @@
                             <span th:text="${idTipoHabitacion.id}"></span>
                         </span>
                     </td>
+
+                    <td>
+                        <!-- Botón de editar -->
+                        <a th:href="@{'/editarHabitacion?id=' + ${habs.id}}" class="btn btn-warning btn-sm" style="margin-right: 5px;">Editar</a>
+                        
+                        <!-- Botón de eliminar -->
+                        <form th:action="@{/deleteHabitacion}" method="post">
+                            <input type="hidden" name="id" th:value="${habs.id}" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+
                 </tr>
             </tbody>
         </table>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.repositorio.ReservasRepository;
 import com.example.demo.modelo.Habitaciones;
@@ -83,6 +84,28 @@ public class HabitacionesController {
         model.addAttribute("habitaciones", habitaciones);
         return "resultadosReservasHabitacion"; 
     }
+    @PostMapping("/deleteHabitacion")
+    public String eliminarTipoHabitacion(@RequestParam(name = "id", required = false) String id){
+        
+        habitacionesRepository.deleteById(id);
+
+        return "redirect:/habitaciones";
+        
+    }
+
+    @PostMapping("/actualizarHabitacion")
+    public String actualizarHabitacion(@ModelAttribute("habitacion") Habitaciones habitacion) {
+        habitacionesRepository.save(habitacion);
+        return "redirect:/habitaciones";
+    }
+
+    @GetMapping("/editarHabitacion")
+    public String editarHabitacion(@RequestParam("id") String id, Model model) {
+        Habitaciones habitacion = habitacionesRepository.findById(id).orElse(null);
+        model.addAttribute("habitacion", habitacion);
+        return "habitacionEditarForm";
+    }
+
 
     @GetMapping("/habitacionForm")
     public String mostrarFormulario(Model model){
