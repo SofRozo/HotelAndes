@@ -29,6 +29,12 @@ public class Reservas {
 
     public Reservas(){}
 
+    public Reservas(String fecha_inicio, String fecha_fin, String estado){
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.estado = estado;
+    }
+
     public Reservas(List<Habitaciones> habitaciones, List<Clientes> clientes, String fecha_inicio, String fecha_fin, String estado){
         this.habitaciones = habitaciones;
         this.clientes = clientes;

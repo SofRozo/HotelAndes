@@ -1,5 +1,4 @@
 package com.example.demo.controller;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -19,10 +17,8 @@ import com.example.demo.repositorio.ReservasRepository;
 import com.example.demo.modelo.Clientes;
 import com.example.demo.modelo.Habitaciones;
 import com.example.demo.modelo.Reservas;
-import com.example.demo.modelo.TiposHabitacion;
 import com.example.demo.repositorio.ClientesRepository;
 import com.example.demo.repositorio.HabitacionesRepository;
-import com.example.demo.repositorio.TiposHabitacionRepository;
 
 @Controller
 public class ReservasController {
@@ -92,9 +88,39 @@ public class ReservasController {
         return "redirect:/reservas";
     }
 
+    @GetMapping("/mostrarResultadosAgregacionHabitacion")
+    public String mostrarResultadosHabitacion(Model model){
+        LookupOperation lookupOperation1 = LookupOperation.newLookup()
+                .from("habitaciones")
+                .localField("habitaciones")
+                .foreignField("_id")
+                .as("Lista_habitaciones");
+        LookupOperation lookupOperation2 = LookupOperation.newLookup()
+                .from("tipos_habitacion")
+                .localField("Lista_habitaciones.tipo_habitacion")
+                .foreignField("_id")
+                .as("Lista_tipos_habitacion");
+        Aggregation aggregation = Aggregation.newAggregation(lookupOperation1, lookupOperation2);
+        
+        List<Reservas> reservas = mongoTemplate.aggregate(aggregation, "reservas", Reservas.class).getMappedResults();
+        model.addAttribute("reservas", reservas);
+        return "resultadosHabitacion"; 
+    }
+
+    @GetMapping("/mostrarResultadosAgregacionClientes")
+    public String mostrarResultadosClientes(Model model){
+
+        LookupOperation lookupOperation = LookupOperation.newLookup()
+                .from("clientes")
+                .localField("clientes")
+                .foreignField("_id")
+                .as("Lista_clientes");
+        Aggregation aggregation = Aggregation.newAggregation(lookupOperation);
+        
+        List<Reservas> reservas = mongoTemplate.aggregate(aggregation, "reservas", Reservas.class).getMappedResults();
+        model.addAttribute("reservas", reservas);
+        return "resultadosClientes"; 
+    }
 
 
-
-    
-    
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Clientes</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Resultados de Clientes</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Reserva</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Documento</th>
+                    <th>Tipo de Documento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="reserva : ${reservas}">
+                    <td th:text="${reserva.clientes[0].id}"></td>
+                    <td th:text="${reserva.clientes[0].nombre}"></td>
+                    <td th:text="${reserva.clientes[0].apellido}"></td>
+                    <td th:text="${reserva.clientes[0].email}"></td>
+                    <td th:text="${reserva.clientes[0].telefono}"></td>
+                    <td th:text="${reserva.clientes[0].documento}"></td>
+                    <td th:text="${reserva.clientes[0].tipo_documento}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+
+</body>
+</html>

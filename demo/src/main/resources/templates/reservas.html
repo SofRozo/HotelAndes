@@ -47,12 +47,12 @@
                     </td>
                     
                     <td>
-                        <!-- Iteramos sobre la lista de tipo habitacion dentro de cada tipo -->
                         <span th:each="idHabitacion : ${res.habitaciones}">
-                            <!-- Mostramos los detalles de cada bebida -->
                             <span th:text="${idHabitacion.id}"></span>
                         </span>
                     </td>
+                    
+                    
 
                     <td>
                         <!-- Iteramos sobre la lista de tipo habitacion dentro de cada tipo -->
@@ -88,7 +88,9 @@
     <div class="container mt-3">
         <h1>Pipeline de agregacion</h1>
         <!-- Botón para redirigir a la consulta de agregacion -->
-        <a th:href="@{/mostrarResultadosAgregacionTiposHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Ver habitacion y sus tipos</a>
+        <a th:href="@{/mostrarResultadosAgregacionHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Ver reservas y sus habitaciones</a>
+        <a th:href="@{/mostrarResultadosAgregacionTiposHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Ver habitaciones y sus tipos</a>
+        <a th:href="@{/mostrarResultadosAgregacionClientes}" class="btn btn-primary" style="margin-bottom: 38px;">Ver reservas y sus clientes</a>
     
     </div>
 
