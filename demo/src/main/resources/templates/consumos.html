@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tipos Habitacion</title>
+    <title>Consumos</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+    <style>
+        /* Estilos para las celdas de la tabla */
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px; 
+            padding: 8px;
+        }
+    </style>
 </head>
 <body>
 
@@ -12,14 +26,14 @@
     <div th:replace="navbar :: navbar"></div>
 
     <div class="container mt-3">
-        <h1>Tipos Habitacion</h1>
+        <h1>Consumos</h1>
 
         <div class="row">
             <div class="col-md-6 mb-3">
                 <!-- Formulario para buscar por nombre -->
-                <form th:action="@{/buscarPorNombre}" method="get">
+                <form th:action="@{/consumoCliente}" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="nombre" placeholder="Buscar por nombre">
+                        <input type="text" class="form-control" name="cliente_id" placeholder="Buscar por id del Cliente">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                         </div>
@@ -28,14 +42,14 @@
             </div>
             <div class="col-md-6 mb-3">
                 <!-- Botón para redirigir al formulario de creación de tipo de habitación -->
-                <a th:href="@{/crearTipoHabitacion}" class="btn btn-primary">Crear Nuevo Tipo de Habitación</a>
+                <a th:href="@{/crearConsumo}" class="btn btn-primary">Crear un nuevo consumo</a>
             </div>
         </div>
         
         <table class="table">
             <thead>
                 <tr>
-                    <th>Habitacion Id</th>
+                    <th>Numero Habitacion</th>
                     <th>Servicio Nombre</th>
                     <th>Cliente Id</th>
                     <th>Descripcion</th>
@@ -45,13 +59,23 @@
             </thead>
             <tbody>
                 <!-- Iteramos sobre la lista de tipos de habitación y mostramos los detalles -->
-                <tr th:each="consumo: ${consumo}">
-                    <td th:text="${consumo.habitacion_id}"></td>
-                    <td th:text="${consumo.descripcion}"></td>
+                <tr th:each="consumo: ${consumos}">
                     <td>
-                        <!-- Iterar sobre la lista de dotación y mostrar cada elemento -->
-                        <span th:each="item : ${consumo.fecha}" th:text="${item} + ', '"></span>
+                        <span th:each="habitacion: ${consumo.habitaciones}">
+                            <span th:if="${habitacion != null}" th:text="${habitacion.numero}"></span>
+                        </span>
                     </td>
+                    <td>
+                        <span th:each="servicio: ${consumo.servicios}">
+                            <span th:if="${servicio != null}" th:text="${servicio.nombre}"></span>
+                        </span>
+                    </td>
+                    <td>
+                        <span th:each="cliente: ${consumo.clientes}">
+                            <span th:if="${cliente != null}" th:text="${cliente.id}"></span>
+                        </span>
+                    </td>
+                    <td th:text="${consumo.descripcion}"></td>
                     <td th:text="${consumo.costo}"></td>
                     <td th:text="${consumo.fecha}"></td>
                     <td>
