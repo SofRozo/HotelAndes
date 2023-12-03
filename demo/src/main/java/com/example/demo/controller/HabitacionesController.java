@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.example.demo.repositorio.ReservasRepository;
 import com.example.demo.modelo.Habitaciones;
-import com.example.demo.modelo.Reservas;
 import com.example.demo.modelo.TiposHabitacion;
 import com.example.demo.repositorio.HabitacionesRepository;
 import com.example.demo.repositorio.TiposHabitacionRepository;
@@ -29,9 +26,6 @@ public class HabitacionesController {
     private HabitacionesRepository habitacionesRepository;
 
     @Autowired
-    private ReservasRepository reservasRepo;
-
-    @Autowired
     private TiposHabitacionRepository tipoHabitacionesRepo;
 
     @Autowired
@@ -41,20 +35,6 @@ public class HabitacionesController {
     public String getHabitaciones(Model model){
         model.addAttribute("habitaciones", habitacionesRepository.findAll());
         return "habitaciones";
-    }
-
-    @GetMapping("/mostrarResultadosAgregacionReservas")
-    public String mostrarResultadosReserva(Model model){
-        LookupOperation lookupOperation = LookupOperation.newLookup()
-                .from("reservas")
-                .localField("reservas")
-                .foreignField("_id")
-                .as("Lista_reservas_habitacion");
-        Aggregation aggregation = Aggregation.newAggregation(lookupOperation);
-        
-        List<Habitaciones> habitaciones = mongoTemplate.aggregate(aggregation, "habitaciones", Habitaciones.class).getMappedResults();
-        model.addAttribute("habitaciones", habitaciones);
-        return "resultadosReservasHabitacion"; 
     }
 
     @GetMapping("/mostrarResultadosAgregacionTiposHabitacion")
@@ -71,19 +51,6 @@ public class HabitacionesController {
         return "resultadosTiposHabitacion"; 
     }
 
-    @GetMapping("/mostrarResultadosAgregacionReservasHabitacion")
-    public String mostrarResultadosReservasHabitacion(Model model){
-        LookupOperation lookupOperation = LookupOperation.newLookup()
-                .from("reservas")
-                .localField("reservas")
-                .foreignField("_id")
-                .as("Lista_reservas_habitacion");
-        Aggregation aggregation = Aggregation.newAggregation(lookupOperation);
-        
-        List<Habitaciones> habitaciones = mongoTemplate.aggregate(aggregation, "habitaciones", Habitaciones.class).getMappedResults();
-        model.addAttribute("habitaciones", habitaciones);
-        return "resultadosReservasHabitacion"; 
-    }
     @PostMapping("/deleteHabitacion")
     public String eliminarTipoHabitacion(@RequestParam(name = "id", required = false) String id){
         

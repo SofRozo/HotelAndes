@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+    <style>
+        /* Estilos para las celdas de la tabla */
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px; 
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Habitaciones</h1>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Informacion Reserva</th>
+                    <th>Tipo Habitacion [Object Id]</th>
+                    <th>Cliente [Object Id]</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteramos sobre la lista de habitaciones y mostramos los detalles -->
+                <tr th:each="res : ${reservas}">
+                    <td>
+                        <p>Fecha inicio: <span th:text="${res.fecha_inicio}"></span></p>
+                        <p>Fecha Fin: <span th:text="${res.fecha_fin}"></span></p>
+                        <p>Estado: <span th:text="${res.estado}"></span></p>
+                    </td>
+                    
+                    <td>
+                        <!-- Iteramos sobre la lista de tipo habitacion dentro de cada tipo -->
+                        <span th:each="idHabitacion : ${res.habitaciones}">
+                            <!-- Mostramos los detalles de cada bebida -->
+                            <span th:text="${idHabitacion.id}"></span>
+                        </span>
+                    </td>
+
+                    <td>
+                        <!-- Iteramos sobre la lista de tipo habitacion dentro de cada tipo -->
+                        <span th:each="idCliente : ${res.clientes}">
+                            <!-- Mostramos los detalles de cada bebida -->
+                            <span th:text="${idCliente.id}"></span>
+                        </span>
+                    </td>
+
+                    <td>
+                        <!-- Botón de editar -->
+
+                        
+                        <!-- Botón de eliminar -->
+                        <form th:action="@{/eliminarReservas}" method="post">
+                            <input type="hidden" name="id" th:value="${res.id}" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    
+         <!-- Botón para redirigir al formulario de creación de tipo bebida -->
+         <a th:href="@{/reservasForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva Reserva</a>
+    
+    </div>
+
+    <hr>
+    
+
+    <div class="container mt-3">
+        <h1>Pipeline de agregacion</h1>
+        <!-- Botón para redirigir a la consulta de agregacion -->
+        <a th:href="@{/mostrarResultadosAgregacionTiposHabitacion}" class="btn btn-primary" style="margin-bottom: 38px;">Ver habitacion y sus tipos</a>
+    
+    </div>
+
+<script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>

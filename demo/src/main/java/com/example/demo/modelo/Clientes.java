@@ -31,32 +31,22 @@ public class Clientes {
     @Field("tipo_documento")
     private String tipo_documento;
 
-    @DBRef
-    private List<Reservas> reservas;
 
     // Constructor vacio para el uso de Spring
     public Clientes(){}
 
     // Constructor con solo el nombre del cliente
-    public Clientes(String nombre){
-        this.nombre = nombre;
-    }
 
-
-    public Clientes(String nombre, String apellido, String email, String telefono, String documento, String tipo_documento, List<Reservas> reservas){
+    public Clientes(String nombre, String apellido, String email, String telefono, String documento, String tipo_documento){
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.telefono = telefono;
         this.documento = documento;
         this.tipo_documento = tipo_documento;
-        this.reservas = reservas;
     }
 
     //setter para agregar una referencia de reserva a las reservas que se tienen
-    public void addReserva(Reservas res){
-        reservas.add(res);
-    }
 
     public String getId() {
         return id;
@@ -113,16 +103,6 @@ public class Clientes {
     public void setTipo_documento(String tipo_documento) {
         this.tipo_documento = tipo_documento;
     }
-
-    public List<Reservas> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<Reservas> reservas) {
-        this.reservas = reservas;
-    }
-
-                                                                                                                                                                                                                                                                            
 
     
 }
