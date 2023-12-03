@@ -12,15 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.Optional;
 
 import com.example.demo.repositorio.ReservasRepository;
 import com.example.demo.modelo.Clientes;
 import com.example.demo.modelo.Habitaciones;
 import com.example.demo.modelo.Reservas;
+import com.example.demo.modelo.TiposHabitacion;
 import com.example.demo.repositorio.ClientesRepository;
 import com.example.demo.repositorio.HabitacionesRepository;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class ReservasController {
@@ -116,5 +117,27 @@ public class ReservasController {
         return "resultadosClientes"; 
     }
 
+
+    @PostMapping("/actualizarReserva")
+    public String actualizarReserva(@ModelAttribute("reserva") Reservas reserva) {
+        Clientes cliente = reserva.getClientes().get(0);
+        Habitaciones habitacion = reserva.getHabitaciones().get(0);
+        if (cliente != null || habitacion != null) {
+            clientesRepo.save(cliente);
+            habitacionesRepo.save(habitacion);
+        }   
+        reservasRepository.save(reserva);
+        return "redirect:/reservas";
+    }
+
+
+     @GetMapping("/editarReserva")
+    public String editarReserva(@RequestParam("id") String id, Model model) {
+        Reservas reserva = reservasRepository.findById(id).orElse(null);
+    
+        model.addAttribute("reserva", reserva);
+    
+        return "editarReservaForm";
+    }
 
 }
