@@ -19,6 +19,8 @@ import com.example.demo.modelo.Habitaciones;
 import com.example.demo.modelo.Reservas;
 import com.example.demo.repositorio.ClientesRepository;
 import com.example.demo.repositorio.HabitacionesRepository;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 public class ReservasController {
@@ -49,44 +51,36 @@ public class ReservasController {
 
     @GetMapping("/reservasForm")
     public String reservasForm(Model model){
-        model.addAttribute("reservas", new Reservas());
-        model.addAttribute("habitaciones", habitacionesRepo.findAll());
-        model.addAttribute("clientes", new Clientes());
-        return "reservasForm";
+        model.addAttribute("nuevaReserva", new Reservas());
+        model.addAttribute("clientes", clientesRepo.findAll());
+        return "crearReservaForm";
     }
-
+    
     @PostMapping("/crearReservas")
-    public String crearReserva(@ModelAttribute("nuevaReserva") Reservas nuevaReserva, @RequestParam("habitacionId") String habitacionId){
-        // Buscar la habitación existente en la base de datos
+    public String crearReserva(@ModelAttribute("nuevaReserva") Reservas nuevaReserva) {
 
-        Clientes cliente = new Clientes(
-            nuevaReserva.getClientes().get(0).getNombre(),
-            nuevaReserva.getClientes().get(0).getApellido(),
-            nuevaReserva.getClientes().get(0).getDocumento(),
-            nuevaReserva.getClientes().get(0).getTelefono(),
-            nuevaReserva.getClientes().get(0).getEmail(),
-            nuevaReserva.getClientes().get(0).getTipo_documento()
-        );
-        
-        // Guardar el cliente en la base de datos
+        // Código existente para crear un nuevo cliente
+        Clientes cliente = new Clientes(nuevaReserva.getClientes().get(0).getNombre(),
+                nuevaReserva.getClientes().get(0).getApellido(), nuevaReserva.getClientes().get(0).getDocumento(),
+                nuevaReserva.getClientes().get(0).getTelefono(), nuevaReserva.getClientes().get(0).getEmail(),
+                nuevaReserva.getClientes().get(0).getTipo_documento());
+
         clientesRepo.save(cliente);
-
         nuevaReserva.setClientes(Collections.singletonList(cliente));
 
-        Habitaciones habitacionExistente = habitacionesRepo.findById(habitacionId).orElse(null);
+        // Buscar la habitación por su número
+        Habitaciones habitacion = habitacionesRepo.findByNumero(nuevaReserva.getHabitaciones().get(0).getNumero());
 
-        if (habitacionExistente != null) {
-            // Si la habitación existe, añadirla a la reserva
-            nuevaReserva.setHabitaciones(Collections.singletonList(habitacionExistente));
-            // Guardar la reserva en la base de datos
-            reservasRepository.save(nuevaReserva);
-        } else {
-            // Si la habitación no existe, redirigir a una página de error o manejar el error de otra manera
-            return "redirect:/error";
-        }
+        // Asociar la habitación a la reserva
+        nuevaReserva.setHabitaciones(Collections.singletonList(habitacion));
+
+        // Guardar la reserva
+        reservasRepository.save(nuevaReserva);
 
         return "redirect:/reservas";
     }
+
+    
 
     @GetMapping("/mostrarResultadosAgregacionHabitacion")
     public String mostrarResultadosHabitacion(Model model){
