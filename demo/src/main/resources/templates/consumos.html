@@ -79,14 +79,14 @@
                     <td th:text="${consumo.costo}"></td>
                     <td th:text="${consumo.fecha}"></td>
                     <td>
-                        <!-- Botón para redirigir al formulario de eliminación del tipo de habitación -->
-                        <form th:action="@{/deleteConsumo}" method="post">
+                        <!-- Botón para redirigir al formulario de eliminación del consumo-->
+                        <form th:action="@{/eliminarConsumos}" method="post">
                             <input type="hidden" name="id" th:value="${consumo.id}" />
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>
                     <td>
-                        <!-- Botón para redirigir a la página de edición del tipo de habitación -->
+                        <!-- Botón para redirigir a la página de edición del consumo -->
                         <a th:href="@{'/editarConsumo?id=' + ${consumo.id}}" class="btn btn-primary">Editar</a>
                     </td>
                 </tr>

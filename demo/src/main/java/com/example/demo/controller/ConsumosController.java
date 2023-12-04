@@ -98,7 +98,11 @@ public class ConsumosController {
         return "editarConsumoForm";
     }
     
-
+    @PostMapping("/eliminarConsumos")
+    public String eliminarReservas(@RequestParam(name = "id", required = false) String id){
+        consumosRepository.deleteById(id);
+        return "redirect:/consumos";
+    }
 // @PostMapping("/crearConsumoNuevo")
 // public String crearConsumoNuevo(@ModelAttribute("consumoNuevo") Consumos consumo){
 //     Consumos nuevo = new Consumos(
