@@ -64,7 +64,7 @@ public class Consumos {
         return this.habitaciones;
     }
 
-    public void sethabitaciones(List<Habitaciones> habitaciones){
+    public void setHabitaciones(List<Habitaciones> habitaciones){
         this.habitaciones = habitaciones;
     }
 

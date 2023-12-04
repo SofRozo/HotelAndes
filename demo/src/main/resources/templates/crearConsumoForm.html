@@ -56,29 +56,27 @@
         <h1>Nuevo consumo</h1>
 
         <!-- Formulario de creación -->
-        <form th:action="@{/crearConsumoNuevo}" th:object="${consumoNuevo}" method="post">
+        <form th:action="@{/crearConsumos}" th:object="${nuevoConsumo}" method="post">
 
 <!-- Campos para la información del tipo de habitacion -->
-<label for="habitacion_id">Id de la habitación del consumo:</label>
-<input type="text" id="habitacion_id" name="habitacion_id" th:field="*{habitaciones[0].id}" required />
-<div th:if="${#fields.hasErrors('habitaciones[0].id')}" th:errors="*{habitaciones[0].id}"></div>
+<label for="numero">Número de Habitación:</label>
+<input type="text" id="numero" name="habitaciones[0].numero" th:field="*{habitaciones[0].numero}" required />
 
-<!-- Check if consumo is not null before iterating over servicio_nombre -->
-<div th:if="${consumo != null}">
-    <label for="servicio_nombre">Nombre del servicio:</label>
-    <div th:each="servicio : ${consumo.servicio_nombre}">
-        <input type="text" id="servicio_nombre" name="servicio_nombre" th:field="*{servicio_nombre[0].nombre}" required />
-    </div>
-</div>
+<label for="nombre">Nombre del servicio:</label>
+<input type="text" id="nombre" name="servicios[0].nombre" th:field="*{servicios[0].nombre}" required />
 
-<label for="cliente_id">Id del cliente:</label>
-<input type="text" id="cliente_id" name="cliente_id" th:field="*{clientes[0].id}" />
+<label for="numero">Documento del cliente:</label>
+<input type="text" id="documento" name="clientes[0].documento" th:field="*{clientes[0].documento}" required />
 
 <label for="descripcion">Descripcion:</label>
 <input type="text" id="descripcion" name="descripcion" th:field="*{descripcion}" required />
 
-<label for="capacidad">Costo:</label>
+<label for="costo">Costo:</label>
 <input type="number" id="costo" name="costo" th:field="*{costo}" required />
+
+<label for="fecha">Fecha:</label>
+<input type="text" id="fecha" name="fecha" th:field="*{fecha}" required />
+
 
 <button type="submit" class="btn btn-success">Crear consumo</button>
 

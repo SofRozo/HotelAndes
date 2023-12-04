@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document (collection = "servicios")
 public class Servicios {
@@ -11,6 +12,7 @@ public class Servicios {
     @Id
     private String id;
     
+    @Field("nombre")
     private String nombre;
     private String descripcion;
     private String tipo_servicio;

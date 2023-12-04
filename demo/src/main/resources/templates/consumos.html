@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <!-- Botón para redirigir al formulario de creación de tipo de habitación -->
-                <a th:href="@{/crearConsumo}" class="btn btn-primary">Crear un nuevo consumo</a>
+                <a th:href="@{/consumosForm}" class="btn btn-primary">Crear un nuevo consumo</a>
             </div>
         </div>
         
@@ -51,7 +51,7 @@
                 <tr>
                     <th>Numero Habitacion</th>
                     <th>Servicio Nombre</th>
-                    <th>Cliente Id</th>
+                    <th>Documento Cliente</th>
                     <th>Descripcion</th>
                     <th>Costo</th>
                     <th>Fecha</th> <!-- Nueva columna para acciones -->
@@ -72,7 +72,7 @@
                     </td>
                     <td>
                         <span th:each="cliente: ${consumo.clientes}">
-                            <span th:if="${cliente != null}" th:text="${cliente.id}"></span>
+                            <span th:if="${cliente != null}" th:text="${cliente.documento}"></span>
                         </span>
                     </td>
                     <td th:text="${consumo.descripcion}"></td>

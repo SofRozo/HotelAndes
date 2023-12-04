@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
@@ -10,9 +12,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.modelo.Consumos;
+import com.example.demo.modelo.Habitaciones;
+import com.example.demo.modelo.Servicios;
+import com.example.demo.modelo.Clientes;
+
+
 import com.example.demo.repositorio.ClientesRepository;
 import com.example.demo.repositorio.ConsumosRepository;
 import com.example.demo.repositorio.HabitacionesRepository;
+import com.example.demo.repositorio.ServiciosRepository;
+
 
 @Controller
 public class ConsumosController {
@@ -25,16 +34,55 @@ public class ConsumosController {
 
     @Autowired
     private ClientesRepository clientesRepository;
+    
+    @Autowired
+    private ServiciosRepository serviciosRepository;
 
     @Autowired
     private MongoTemplate mongoTemplate;   
     
-        @GetMapping("/consumos")
-        public String getConsumos(Model model){
-            model.addAttribute("consumos", consumosRepository.findAll());
-            return "consumos";
-        }
-        
+    @GetMapping("/consumos")
+    public String getConsumos(Model model){
+        model.addAttribute("consumos", consumosRepository.findAll());
+        return "consumos";
+    }
+    
+    @GetMapping("/consumosForm")
+        public String consumosForm(Model model){
+        model.addAttribute("nuevoConsumo", new Consumos());
+        return "crearConsumoForm";
+    }
+    
+   @PostMapping("/crearConsumos")
+    public String crearConsumo(@ModelAttribute("nuevoConsumo") Consumos nuevoConsumo) {
+
+
+        // Buscar la habitación por su número
+        Habitaciones habitacion = habitacionesRepository.findByNumero(nuevoConsumo.getHabitaciones().get(0).getNumero());
+        Clientes cliente = clientesRepository.findByDocumento(nuevoConsumo.getClientes().get(0).getDocumento());
+        Servicios servicio = serviciosRepository.findByNombre(nuevoConsumo.getServicios().get(0).getNombre()).get(0);
+
+        // Asociar la habitación a la reserva
+        nuevoConsumo.setHabitaciones(Collections.singletonList(habitacion));
+        nuevoConsumo.setClientes(Collections.singletonList(cliente));
+        nuevoConsumo.setServicios(Collections.singletonList(servicio));
+
+        // Guardar la reserva
+        consumosRepository.save(nuevoConsumo);
+
+        return "redirect:/consumos";
+    }
+
+    // @PostMapping("/actualizarConsumo")
+    // public String actualizarConsumo(@ModelAttribute("consumo") Consumos consumo) {
+    //     // save the tipo_habitacion object
+    //     Habitaciones habitaciones = habitacion.getTipo_habitacion().get(0);
+    //     if (tipo_habitacion != null) {
+    //         tipoConsumoesRepo.save(tipo_habitacion);
+    //     }
+    //     habitacionesRepository.save(habitacion);
+    //     return "redirect:/habitaciones";
+    }
     // @GetMapping("/crearConsumo")
     // public String crearConsumo(Model model){
     //     model.addAttribute("consumoNuevo", new Consumos());
@@ -44,7 +92,7 @@ public class ConsumosController {
 // @PostMapping("/crearConsumoNuevo")
 // public String crearConsumoNuevo(@ModelAttribute("consumoNuevo") Consumos consumo){
 //     Consumos nuevo = new Consumos(
-//         consumo.getHabitaciones(),
+//         consumo.getConsumoes(),
 //         consumo.getServicioNombre(),
 //         consumo.getClientes(),
 //         consumo.getDescripcion(),
@@ -72,4 +120,3 @@ public class ConsumosController {
         //     model.addAttribute("consumo", consumos);
         //     return "consumo";
         // }
-}
