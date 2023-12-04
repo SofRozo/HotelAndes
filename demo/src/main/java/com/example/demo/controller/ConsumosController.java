@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.modelo.Consumos;
 import com.example.demo.modelo.Habitaciones;
+import com.example.demo.modelo.Reservas;
 import com.example.demo.modelo.Servicios;
 import com.example.demo.modelo.Clientes;
 
@@ -73,21 +74,30 @@ public class ConsumosController {
         return "redirect:/consumos";
     }
 
-    // @PostMapping("/actualizarConsumo")
-    // public String actualizarConsumo(@ModelAttribute("consumo") Consumos consumo) {
-    //     // save the tipo_habitacion object
-    //     Habitaciones habitaciones = habitacion.getTipo_habitacion().get(0);
-    //     if (tipo_habitacion != null) {
-    //         tipoConsumoesRepo.save(tipo_habitacion);
-    //     }
-    //     habitacionesRepository.save(habitacion);
-    //     return "redirect:/habitaciones";
+    @PostMapping("/actualizarConsumo")
+    public String actualizarConsumo(@ModelAttribute("consumo") Consumos consumo) {
+        // save the tipo_habitacion object
+        Habitaciones habitacion = consumo.getHabitaciones().get(0);
+        Servicios servicio = consumo.getServicios().get(0);
+        Clientes cliente = consumo.getClientes().get(0);
+        if (cliente != null || habitacion != null || servicio != null){
+            habitacionesRepository.save(habitacion);
+            clientesRepository.save(cliente);
+            serviciosRepository.save(servicio);
+        }
+        consumosRepository.save(consumo);
+        return "redirect:/consumos";
     }
-    // @GetMapping("/crearConsumo")
-    // public String crearConsumo(Model model){
-    //     model.addAttribute("consumoNuevo", new Consumos());
-    //     return "consumoForm";
-    // }
+
+    @GetMapping("/editarConsumo")
+    public String editarConsumo(@RequestParam("id") String id, Model model) {
+        Consumos consumo = consumosRepository.findById(id).orElse(null);
+    
+        model.addAttribute("consumo", consumo);
+    
+        return "editarConsumoForm";
+    }
+    
 
 // @PostMapping("/crearConsumoNuevo")
 // public String crearConsumoNuevo(@ModelAttribute("consumoNuevo") Consumos consumo){
@@ -120,3 +130,4 @@ public class ConsumosController {
         //     model.addAttribute("consumo", consumos);
         //     return "consumo";
         // }
+        }
