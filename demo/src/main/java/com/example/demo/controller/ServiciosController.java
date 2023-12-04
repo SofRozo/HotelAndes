@@ -27,6 +27,14 @@ public class ServiciosController {
             return "servicios";
         }
 
+        @GetMapping("/buscarPorNombreServicio")
+        public String buscarPorNombreServicio(@RequestParam("nombre") String nombre, Model model) {
+            List<Servicios> servicios = serviciosRepository.findByNombre(nombre);
+            model.addAttribute("servicios", servicios);
+            return "servicios";
+        }
+
+
 
         @GetMapping("/serviciosForm")
         public String mostrarFormulario(Model model) {

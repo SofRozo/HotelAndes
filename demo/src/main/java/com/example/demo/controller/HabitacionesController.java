@@ -37,6 +37,13 @@ public class HabitacionesController {
         return "habitaciones";
     }
 
+    @GetMapping("/buscarPorNumeroHabitacion")
+    public String buscarPorNumeroHabitacion(@RequestParam("numero") String numero, Model model) {
+        Habitaciones habitacion = habitacionesRepository.findByNumero(numero);
+        model.addAttribute("habitaciones", habitacion);
+        return "habitaciones";
+    }
+
     @GetMapping("/mostrarResultadosAgregacionTiposHabitacion")
     public String mostrarResultadosTiposHabitacion(Model model){
         LookupOperation lookupOperation = LookupOperation.newLookup()

@@ -27,6 +27,21 @@
 
     <div class="container mt-3">
         <h1>Habitaciones</h1>
+
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <!-- Formulario para buscar por nombre -->
+                <form th:action="@{/buscarPorNumeroHabitacion}" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="numero" placeholder="Buscar por numero">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         
         <table class="table">
             <thead>
