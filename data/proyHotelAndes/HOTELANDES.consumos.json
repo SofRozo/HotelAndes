@@ -1,0 +1,33 @@
+[{
+  "_id": {
+    "$oid": "656cf13d98b89b4056addcfc"
+  },
+  "habitaciones": [
+    {
+      "$ref": "habitaciones",
+      "$id": {
+        "$oid": "656349a137a2a92a2d57dd54"
+      }
+    }
+  ],
+  "clientes": [
+    {
+      "$ref": "clientes",
+      "$id": {
+        "$oid": "656349a137a2a92a2d57dd45"
+      }
+    }
+  ],
+  "descripcion": "no c",
+  "costo": 50,
+  "servicios": [
+    {
+      "$ref": "servicios",
+      "$id": {
+        "$oid": "6563e8fc4b2b56e2d9a10ccd"
+      }
+    }
+  ],
+  "fecha": "2023-10-04",
+  "_class": "com.example.demo.modelo.Consumo"
+}]

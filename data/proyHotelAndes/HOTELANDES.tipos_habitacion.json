@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "65635ccdc9b925561c535740"
+  },
+  "nombre": "Suite Presidencial",
+  "descripcion": "Suite presidencial de lujo con vista panorámica.",
+  "dotacion": [
+    "Televisión",
+    "Minibar",
+    "Cafetera",
+    "Plancha",
+    "tina"
+  ],
+  "capacidad": 2,
+  "costo": 800000,
+  "_class": "com.example.demo.modelo.TiposHabitacion"
+},
+{
+  "_id": {
+    "$oid": "65635cf3c9b925561c535742"
+  },
+  "nombre": "Suite",
+  "descripcion": "Suite con amplias comodidades, grande.",
+  "dotacion": [
+    "Televisión",
+    "Cafetera",
+    "Nevera"
+  ],
+  "costo": 400000,
+  "capacidad": 2
+},
+{
+  "_id": {
+    "$oid": "65635d0ec9b925561c535744"
+  },
+  "nombre": "Familiar",
+  "descripcion": "Habitación familiar para 6 a 8 personas con comedor y cocina.",
+  "dotacion": [
+    "Televisión"
+  ],
+  "costo": 800000,
+  "capacidad": 8
+},
+{
+  "_id": {
+    "$oid": "65635d29c9b925561c535746"
+  },
+  "nombre": "Doble",
+  "descripcion": "Habitación doble para 2 o 3 personas con jacuzzi.",
+  "dotacion": [
+    "Televisión"
+  ],
+  "costo": 300000,
+  "capacidad": 3
+},
+{
+  "_id": {
+    "$oid": "65635d45c9b925561c535748"
+  },
+  "nombre": "Sencilla",
+  "descripcion": "Habitación sencilla y comoda, perfecta para viajes cortos.",
+  "dotacion": [
+    "Televisión"
+  ],
+  "costo": 150000,
+  "capacidad": 1
+}]

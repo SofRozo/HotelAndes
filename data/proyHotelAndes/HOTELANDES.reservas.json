@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "656cbee6c4624b51b135ffe1"
+  },
+  "habitaciones": [
+    {
+      "$ref": "habitaciones",
+      "$id": {
+        "$oid": "656349a137a2a92a2d57dd54"
+      }
+    }
+  ],
+  "clientes": [
+    {
+      "$ref": "clientes",
+      "$id": {
+        "$oid": "656cd84a9fc2471c5e9e3fe8"
+      }
+    }
+  ],
+  "fecha_inicio": "2023-04-10",
+  "fecha_fin": "2023-05-11",
+  "estado": "Activa",
+  "_class": "com.example.demo.modelo.Reservas"
+}]

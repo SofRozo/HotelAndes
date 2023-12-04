@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "6563e8fc4b2b56e2d9a10ccd"
+  },
+  "nombre": "Restaurante Hotel Caserito",
+  "descripcion": "Creado para disfrutar lo clasico del pais",
+  "tipo_servicio": "Alimentacion",
+  "productos_menu": [
+    {
+      "nombre": "Caserito 1",
+      "descripcion": "Bandeja de pollo deliciosa con frijol y aguacate.",
+      "precio": 20000
+    },
+    {
+      "nombre": "Caserito 2",
+      "descripcion": "Ajiaco de la tierra, papas, arroz.",
+      "precio": 25000
+    },
+    {
+      "nombre": "aaaa",
+      "descripcion": "AAAAAAAAA",
+      "precio": 33
+    },
+    {
+      "nombre": "Bandeja paisa",
+      "descripcion": "Deliciosa con frijoles, chicharron y arroz",
+      "precio": 25000
+    }
+  ],
+  "_class": "com.example.demo.modelo.Servicios"
+}]
