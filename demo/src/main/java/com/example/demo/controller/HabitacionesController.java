@@ -39,7 +39,7 @@ public class HabitacionesController {
 
     @GetMapping("/buscarPorNumeroHabitacion")
     public String buscarPorNumeroHabitacion(@RequestParam("numero") String numero, Model model) {
-        Habitaciones habitacion = habitacionesRepository.findByNumero(numero);
+        Habitaciones habitacion = habitacionesRepository.findByNumero(numero).get(0);
         model.addAttribute("habitaciones", habitacion);
         return "habitaciones";
     }

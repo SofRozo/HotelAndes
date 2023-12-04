@@ -30,10 +30,10 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <!-- Formulario para buscar por nombre -->
-                <form th:action="@{/consumoCliente}" method="get">
+                <!-- Formulario para buscar por numero -->
+                <form th:action="@{/buscarPorNumero}" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="cliente_id" placeholder="Buscar por id del Cliente">
+                        <input type="text" class="form-control" name="numero" placeholder="Buscar por numero habitación">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                         </div>

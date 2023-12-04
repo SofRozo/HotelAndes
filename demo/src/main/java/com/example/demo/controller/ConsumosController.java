@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.modelo.Consumos;
 import com.example.demo.modelo.Habitaciones;
-import com.example.demo.modelo.Reservas;
 import com.example.demo.modelo.Servicios;
 import com.example.demo.modelo.Clientes;
 
@@ -59,7 +59,7 @@ public class ConsumosController {
 
 
         // Buscar la habitación por su número
-        Habitaciones habitacion = habitacionesRepository.findByNumero(nuevoConsumo.getHabitaciones().get(0).getNumero());
+        Habitaciones habitacion = habitacionesRepository.findByNumero(nuevoConsumo.getHabitaciones().get(0).getNumero()).get(0);
         Clientes cliente = clientesRepository.findByDocumento(nuevoConsumo.getClientes().get(0).getDocumento());
         Servicios servicio = serviciosRepository.findByNombre(nuevoConsumo.getServicios().get(0).getNombre()).get(0);
 
@@ -103,35 +103,20 @@ public class ConsumosController {
         consumosRepository.deleteById(id);
         return "redirect:/consumos";
     }
-// @PostMapping("/crearConsumoNuevo")
-// public String crearConsumoNuevo(@ModelAttribute("consumoNuevo") Consumos consumo){
-//     Consumos nuevo = new Consumos(
-//         consumo.getConsumoes(),
-//         consumo.getServicioNombre(),
-//         consumo.getClientes(),
-//         consumo.getDescripcion(),
-//         consumo.getCosto(),
-//         consumo.getFecha()
-//     );
 
-//     consumosRepository.save(nuevo);
-//     return "redirect:/consumo";
-// }
+    @GetMapping("/buscarPorNumero")
+    public String buscarPorNumero(@RequestParam("numero") String numero, Model model) {
+        // Busca las habitaciones por número
+        List<Habitaciones> habitaciones = habitacionesRepository.findByNumero(numero);
+    
+        // Busca los consumos por la lista de habitaciones obtenida
+        List<Consumos> consumos = consumosRepository.findByHabitaciones(habitaciones);
+    
+        // Haz lo que necesites con la lista de consumos, por ejemplo, agregarla al modelo para mostrar en la vista.
+        model.addAttribute("consumos", consumos);
+    
+        // Devuelve el nombre de la vista que mostrará los resultados
+        return "consumos";
+    }
 
-        // @PostMapping("/deleteConsumo")
-        // public String eliminarConsumo(@RequestParam(name = "id", required = false) String id){
-        //     consumoRepository.deleteById(id);
-            
-        //     return "redirect:/consumo";
-        // }
-
-
-
-
-        // @GetMapping("/consumoCliente")
-        // public String consumoPorCliente(@RequestParam("cliente_id") String cliente_id, Model model){
-        //     List<Consumo> consumos = consumoRepository.findByClienteId(cliente_id);
-        //     model.addAttribute("consumo", consumos);
-        //     return "consumo";
-        // }
-        }
+    }

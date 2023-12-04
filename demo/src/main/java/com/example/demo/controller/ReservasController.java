@@ -70,7 +70,7 @@ public class ReservasController {
         nuevaReserva.setClientes(Collections.singletonList(cliente));
 
         // Buscar la habitación por su número
-        Habitaciones habitacion = habitacionesRepo.findByNumero(nuevaReserva.getHabitaciones().get(0).getNumero());
+        Habitaciones habitacion = habitacionesRepo.findByNumero(nuevaReserva.getHabitaciones().get(0).getNumero()).get(0);
 
         // Asociar la habitación a la reserva
         nuevaReserva.setHabitaciones(Collections.singletonList(habitacion));
