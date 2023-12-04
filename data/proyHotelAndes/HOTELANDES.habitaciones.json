@@ -14,4 +14,35 @@
   "estado": "Disponible.",
   "detalles": "------",
   "_class": "com.example.demo.modelo.Habitaciones"
+},
+{
+  "_id": {
+    "$oid": "656d284437a19a2b7a25ecd8"
+  },
+  "numero": "203",
+  "_class": "com.example.demo.modelo.Habitaciones"
+},
+{
+  "_id": {
+    "$oid": "656d33ff81d8a37d29b341e5"
+  },
+  "numero": "206",
+  "tipo_habitacion": [
+    {
+      "$ref": "tipos_habitacion",
+      "$id": {
+        "$oid": "656d33ff81d8a37d29b341e4"
+      }
+    }
+  ],
+  "estado": "Disponible",
+  "detalles": "si",
+  "_class": "com.example.demo.modelo.Habitaciones"
+},
+{
+  "_id": {
+    "$oid": "656d4e2154e8ac670a306ced"
+  },
+  "numero": "203",
+  "_class": "com.example.demo.modelo.Habitaciones"
 }]

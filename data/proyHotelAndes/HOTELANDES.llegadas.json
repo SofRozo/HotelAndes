@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "656cbee6c4624b51b135ffe2"
+  },
+  "reserva": {
+    "$ref": "reservas",
+    "$id": {
+      "$oid": "656cbee6c4624b51b135ffe1"
+    }
+  },
+  "cliente": {
+    "$ref": "clientes",
+    "$id": {
+      "$oid": "656cd84a9fc2471c5e9e3fe8"
+    }
+  },
+  "fecha_llegada": "2023-04-10",
+  "_class": "com.example.demo.modelo.Llegadas"
+}]

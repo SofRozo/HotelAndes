@@ -6,7 +6,15 @@
     {
       "$ref": "habitaciones",
       "$id": {
-        "$oid": "656349a137a2a92a2d57dd54"
+        "$oid": "656d4e2154e8ac670a306ced"
+      }
+    }
+  ],
+  "servicios": [
+    {
+      "$ref": "servicios",
+      "$id": {
+        "$oid": "656d4e2154e8ac670a306cef"
       }
     }
   ],
@@ -14,12 +22,27 @@
     {
       "$ref": "clientes",
       "$id": {
-        "$oid": "656349a137a2a92a2d57dd45"
+        "$oid": "656d4e2154e8ac670a306cee"
       }
     }
   ],
-  "descripcion": "no c",
-  "costo": 50,
+  "descripcion": "Empanada Premium",
+  "costo": 100,
+  "fecha": "2023-10-04",
+  "_class": "com.example.demo.modelo.Consumos"
+},
+{
+  "_id": {
+    "$oid": "656d51d47b04ce5175382db5"
+  },
+  "habitaciones": [
+    {
+      "$ref": "habitaciones",
+      "$id": {
+        "$oid": "656d33ff81d8a37d29b341e5"
+      }
+    }
+  ],
   "servicios": [
     {
       "$ref": "servicios",
@@ -28,6 +51,16 @@
       }
     }
   ],
-  "fecha": "2023-10-04",
-  "_class": "com.example.demo.modelo.Consumo"
+  "clientes": [
+    {
+      "$ref": "clientes",
+      "$id": {
+        "$oid": "656d339b81d8a37d29b341e2"
+      }
+    }
+  ],
+  "descripcion": "Empanada Premium",
+  "costo": 5000,
+  "fecha": "2023-11-03",
+  "_class": "com.example.demo.modelo.Consumos"
 }]
