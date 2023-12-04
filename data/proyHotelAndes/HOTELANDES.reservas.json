@@ -22,4 +22,29 @@
   "fecha_fin": "2023-05-11",
   "estado": "Activa",
   "_class": "com.example.demo.modelo.Reservas"
+},
+{
+  "_id": {
+    "$oid": "656d339c81d8a37d29b341e3"
+  },
+  "habitaciones": [
+    {
+      "$ref": "habitaciones",
+      "$id": {
+        "$oid": "656349a137a2a92a2d57dd54"
+      }
+    }
+  ],
+  "clientes": [
+    {
+      "$ref": "clientes",
+      "$id": {
+        "$oid": "656d339b81d8a37d29b341e2"
+      }
+    }
+  ],
+  "fecha_inicio": "2023-12-03",
+  "fecha_fin": "2023-12-09",
+  "estado": "Activa",
+  "_class": "com.example.demo.modelo.Reservas"
 }]

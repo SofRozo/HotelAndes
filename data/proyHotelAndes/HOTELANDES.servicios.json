@@ -28,4 +28,18 @@
     }
   ],
   "_class": "com.example.demo.modelo.Servicios"
+},
+{
+  "_id": {
+    "$oid": "656d284537a19a2b7a25ecda"
+  },
+  "nombre": "Restaurante Hotel Caserito",
+  "_class": "com.example.demo.modelo.Servicios"
+},
+{
+  "_id": {
+    "$oid": "656d4e2154e8ac670a306cef"
+  },
+  "nombre": "Restaurante Hotel Caserito",
+  "_class": "com.example.demo.modelo.Servicios"
 }]

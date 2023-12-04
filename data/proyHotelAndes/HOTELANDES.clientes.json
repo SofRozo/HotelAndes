@@ -44,4 +44,30 @@
   "documento": "j.miguel@gmail",
   "tipo_documento": "TI",
   "_class": "com.example.demo.modelo.Clientes"
+},
+{
+  "_id": {
+    "$oid": "656d284437a19a2b7a25ecd9"
+  },
+  "documento": "1032876365",
+  "_class": "com.example.demo.modelo.Clientes"
+},
+{
+  "_id": {
+    "$oid": "656d339b81d8a37d29b341e2"
+  },
+  "nombre": "Santiago",
+  "apellido": "P",
+  "email": "1001309927",
+  "telefono": "3045370558",
+  "documento": "p.penaranda",
+  "tipo_documento": "cc",
+  "_class": "com.example.demo.modelo.Clientes"
+},
+{
+  "_id": {
+    "$oid": "656d4e2154e8ac670a306cee"
+  },
+  "documento": "1032876365",
+  "_class": "com.example.demo.modelo.Clientes"
 }]
