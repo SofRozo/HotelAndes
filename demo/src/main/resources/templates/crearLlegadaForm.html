@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva llegada</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #28a745;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="navbar :: navbar"></div>
+
+    <div class="container mt-3">
+        <h1>Nuevo LLegada</h1>
+
+        <!-- Formulario de creación -->
+        <form th:action="@{/crearLlegadas}" th:object="${nuevaLlegada}" method="post">
+
+<!-- Campos para la información del tipo de habitacion -->
+        <label for="numero">Fecha llegada:</label>
+        <input type="text" id="fecha_llegada" name="fecha_llegada" th:field="*{fecha_llegada}" required />
+
+        <label for="nombre">Documento del cliente:</label>
+        <input type="text" id="documento" name="cliente[0].documento" th:field="*{cliente[0].documento}" required />
+
+        <label for="numero">Reserva del cliente:</label>
+        <input type="text" id="reserva" name="reserva[0].id" th:field="*{reserva[0].id}" required />
+
+
+        <button type="submit" class="btn btn-success">Crear reserva</button>
+
+                </form>
+    </div>
+
+</body>
+</html>

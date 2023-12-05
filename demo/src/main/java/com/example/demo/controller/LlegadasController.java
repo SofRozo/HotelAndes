@@ -39,30 +39,37 @@ public class LlegadasController {
         return "llegadas";
     }
 
-    // @PostMapping("/eliminarLlegadas")
-    // public String eliminarLlegadas(@RequestParam(name= "id", required = false) String id){
-    //     llegadasRepository.deleteById(id);
-    //     return "redirect:/llegadas";
-    // }
+    @GetMapping("/llegadaCliente")
+    public String buscarPorDocumento(@RequestParam("documento") String documento, Model model){
+        Clientes cliente = clientesRepository.findByDocumento(documento);
+        model.addAttribute("llegadas", llegadasRepository.findByCliente(cliente));
+        return "llegadas";
+    }
 
-    // @GetMapping("/llegadasForm")
-    // public String llegadasForm(Model model){
-    //     model.addAttribute("nuevaLlegada", new Llegadas());
-    //     return "crearLlegadaForm";
-    // }
+    @PostMapping("/eliminarLlegadas")
+    public String eliminarLlegadas(@RequestParam(name= "id", required = false) String id){
+         llegadasRepository.deleteById(id);
+         return "redirect:/llegadas";
+     }
 
-    // @PostMapping("/crearLlegadas")
-    // public String crearLlegada(@ModelAttribute("nuevaLlegada") Llegadas nuevaLlegada){
+    @GetMapping("/llegadasForm")
+    public String llegadasForm(Model model){
+       model.addAttribute("nuevaLlegada", new Llegadas());
+         return "crearLlegadaForm";
+     }
 
-    //     Reservas reserva = reservasRepository.findById(nuevaLlegada.getReserva().get(0).getId()).get();
-    //     Clientes cliente = clientesRepository.findByDocumento(nuevaLlegada.getCliente().get(0).getDocumento());
+    @PostMapping("/crearLlegadas")
+    public String crearLlegada(@ModelAttribute("nuevaLlegada") Llegadas nuevaLlegada){
+
+         Reservas reserva = reservasRepository.findById(nuevaLlegada.getReserva().get(0).getId()).get();
+         Clientes cliente = clientesRepository.findByDocumento(nuevaLlegada.getCliente().get(0).getDocumento());
         
-    //     nuevaLlegada.setReserva(Collections.singletonList(reserva));
-    //     nuevaLlegada.setCliente(Collections.singletonList(cliente));
+         nuevaLlegada.setReserva(Collections.singletonList(reserva));
+         nuevaLlegada.setCliente(Collections.singletonList(cliente));
 
-    //     llegadasRepository.save(nuevaLlegada);
+         llegadasRepository.save(nuevaLlegada);
 
-    //     return "redirect:/llegadas";
-    // }
+         return "redirect:/llegadas";
+     }
 
 }
