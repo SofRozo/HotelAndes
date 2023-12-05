@@ -7,5 +7,5 @@ import com.example.demo.modelo.Habitaciones;
 
 
 public interface ConsumosRepository extends MongoRepository<Consumos, String>{
-    List<Consumos> findByHabitaciones(List<Habitaciones> habitaciones);
+    List<Consumos> findByHabitaciones(Habitaciones habitaciones);
 }

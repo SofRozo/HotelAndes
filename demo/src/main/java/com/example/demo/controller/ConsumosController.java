@@ -104,19 +104,25 @@ public class ConsumosController {
         return "redirect:/consumos";
     }
 
-    @GetMapping("/buscarPorNumero")
-    public String buscarPorNumero(@RequestParam("numero") String numero, Model model) {
-        // Busca las habitaciones por número
-        List<Habitaciones> habitaciones = habitacionesRepository.findByNumero(numero);
+    // @GetMapping("/buscarPorNumero")
+    // public String buscarPorNumero(@RequestParam("numero") String numero, Model model) {
+    //     // Busca las habitaciones por número
+    //     List<Habitaciones> habitaciones = habitacionesRepository.findByNumero(numero);
     
-        // Busca los consumos por la lista de habitaciones obtenida
-        List<Consumos> consumos = consumosRepository.findByHabitaciones(habitaciones);
+    //     // Busca los consumos por la lista de habitaciones obtenida
+    //     List<Consumos> consumos = consumosRepository.findByHabitaciones(habitaciones);
     
-        // Haz lo que necesites con la lista de consumos, por ejemplo, agregarla al modelo para mostrar en la vista.
-        model.addAttribute("consumos", consumos);
+    //     // Haz lo que necesites con la lista de consumos, por ejemplo, agregarla al modelo para mostrar en la vista.
+    //     model.addAttribute("consumos", consumos);
     
-        // Devuelve el nombre de la vista que mostrará los resultados
+    //     // Devuelve el nombre de la vista que mostrará los resultados
+    //     return "consumos";
+    // }
+
+    @GetMapping("/consumoHabitacion")
+    public String buscarPorNumero(@RequestParam("numero") String numero, Model model){
+        Habitaciones habitacion = habitacionesRepository.findByNumero(numero).get(0);
+        model.addAttribute("consumos", consumosRepository.findByHabitaciones(habitacion));
         return "consumos";
     }
-
     }
