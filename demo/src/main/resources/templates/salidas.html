@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLegadas</title>
+    <title>Salidas</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
     <style>
         /* Estilos para las celdas de la tabla */
@@ -26,12 +26,12 @@
     <div th:replace="~{navbar :: navbar}"></div>
 
     <div class="container mt-3">
-        <h1>Llegadas</h1>
+        <h1>Salidas</h1>
 
         <div class="row">
             <div class="col-md-6 mb-3">
                 <!-- Formulario para buscar por nombre -->
-                <form th:action="@{/llegadaCliente}" method="get">
+                <form th:action="@{/salidaCliente}" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="documento" placeholder="Buscar por documento">
                         <div class="input-group-append">
@@ -45,7 +45,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Fecha llegada</th>
+                    <th>Fecha Salida</th>
                     <th>Cliente Id</th>
                     <th>Id reserva</th>
                     <th>Acciones</th>
@@ -54,22 +54,22 @@
             </thead>
             <tbody>
                 <!-- Iteramos sobre la lista de tipos de habitación y mostramos los detalles -->
-                <tr th:each="llegada: ${llegadas}">
+                <tr th:each="salida: ${salidas}">
                     <td>
-                       <p> Fecha llegada: <span th:text="${llegada.fecha_llegada}"></span></p>
+                       <p> Fecha salida: <span th:text="${salida.fecha_salida}"></span></p>
                     </td>
                     <td>
-                        <span th:each="client: ${llegada.cliente}">
+                        <span th:each="client: ${salida.cliente}">
                             <span th:if="${client != null}" th:text="${client.id}"></span>
                         </span>
                     </td>
                     <td>
-                        <span th:each="reserva: ${llegada.reserva}">
+                        <span th:each="reserva: ${salida.reserva}">
                             <span th:if="${reserva != null}" th:text="${reserva.id}"></span>
                     </td>
                     <td>
-                        <form th:action="@{/eliminarLlegadas}" method="post">
-                            <input type="hidden" name="id" th:value="${llegada.id}" />
+                        <form th:action="@{/eliminarSalidas}" method="post">
+                            <input type="hidden" name="id" th:value="${salida.id}" />
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
 
@@ -80,7 +80,7 @@
                 </tr>
             </tbody>
         </table>
-        <a th:href="@{/llegadasForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva LLegada</a>
+        <a th:href="@{/salidasForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva Salida</a>
     </div>
 
     <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
