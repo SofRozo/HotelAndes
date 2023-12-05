@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumos</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css" />
+    <style>
+        /* Estilos para las celdas de la tabla */
+        table {
+            width: 100%;
+        }
+
+        th, td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px; 
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Incluye el navbar -->
+    <div th:replace="~{navbar :: navbar}"></div>
+
+    <div class="container mt-3">
+        <h1>Llegadas</h1>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <!-- Formulario para buscar por numero -->
+                <form th:action="@{/buscarPorNumero}" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="numero" placeholder="Buscar por numero habitación">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6 mb-3">
+                <!-- Botón para redirigir al formulario de creación de tipo de habitación -->
+                <a th:href="@{/consumosForm}" class="btn btn-primary">Crear una nueva llegada</a>
+            </div>
+        </div>
+        
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>reserva id</th>
+                    <th>documento</th>
+                    <th>fecha de llegada</th>
+ <!-- Nueva columna para acciones -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iteramos sobre la lista de tipos de habitación y mostramos los detalles -->
+                <tr th:each="llegada: ${llegadas}">
+                    <td>
+                        <span th:each="res: ${llegada.reserva}">
+                            <span th:if="${res != null}" th:text="${res.id}"></span>
+                        </span>
+                    </td>
+                    <td>
+                        <span th:each="client: ${llegada.cliente}">
+                            <span th:if="${client != null}" th:text="${client.documento}"></span>
+                        </span>
+                    </td>
+                    <td th:text="${llegada.fecha_llegada}"></td>
+
+                        <!-- Botón para redirigir al formulario de eliminación del consumo-->
+                        <form th:action="@{/eliminarConsumos}" method="post">
+                            <input type="hidden" name="id" th:value="${consumo.id}" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <!-- Botón para redirigir a la página de edición del consumo -->
+                        <a th:href="@{'/editarConsumo?id=' + ${consumo.id}}" class="btn btn-primary">Editar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+</body>
+</html>
+
