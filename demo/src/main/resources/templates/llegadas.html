@@ -30,28 +30,25 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <!-- Formulario para buscar por numero -->
-                <form th:action="@{/buscarPorNumero}" method="get">
+                <!-- Formulario para buscar por nombre -->
+                <form th:action="@{/llegadaCliente}" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="numero" placeholder="Buscar por numero habitación">
+                        <input type="text" class="form-control" name="documento" placeholder="Buscar por documento">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col-md-6 mb-3">
-                <!-- Botón para redirigir al formulario de creación de tipo de habitación -->
-                <a th:href="@{/consumosForm}" class="btn btn-primary">Crear una nueva llegada</a>
-            </div>
         </div>
-        
+
         <table class="table">
             <thead>
                 <tr>
-                    <th>reserva id</th>
-                    <th>documento</th>
-                    <th>fecha de llegada</th>
+                    <th>Fecha llegada</th>
+                    <th>Cliente Id</th>
+                    <th>Id reserva</th>
+                    <th>Acciones</th>
  <!-- Nueva columna para acciones -->
                 </tr>
             </thead>
@@ -59,30 +56,31 @@
                 <!-- Iteramos sobre la lista de tipos de habitación y mostramos los detalles -->
                 <tr th:each="llegada: ${llegadas}">
                     <td>
-                        <span th:each="res: ${llegada.reserva}">
-                            <span th:if="${res != null}" th:text="${res.id}"></span>
-                        </span>
+                       <p> Fecha llegada: <span th:text="${llegada.fecha_llegada}"></span></p>
                     </td>
                     <td>
                         <span th:each="client: ${llegada.cliente}">
-                            <span th:if="${client != null}" th:text="${client.documento}"></span>
+                            <span th:if="${client != null}" th:text="${client.id}"></span>
                         </span>
                     </td>
-                    <td th:text="${llegada.fecha_llegada}"></td>
-
-                        <!-- Botón para redirigir al formulario de eliminación del consumo-->
-                        <form th:action="@{/eliminarConsumos}" method="post">
-                            <input type="hidden" name="id" th:value="${consumo.id}" />
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                    <td>
+                        <span th:each="reserva: ${llegada.reserva}">
+                            <span th:if="${reserva != null}" th:text="${reserva.id}"></span>
                     </td>
                     <td>
-                        <!-- Botón para redirigir a la página de edición del consumo -->
-                        <a th:href="@{'/editarConsumo?id=' + ${consumo.id}}" class="btn btn-primary">Editar</a>
+                        <form th:action="@{/eliminarLlegadas}" method="post">
+                            <input type="hidden" name="id" th:value="${llegada.id}" />
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+
+
+
                     </td>
+
                 </tr>
             </tbody>
         </table>
+        <a th:href="@{/llegadasForm}" class="btn btn-primary" style="margin-bottom: 38px;">Crear Nueva LLegada</a>
     </div>
 
     <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
